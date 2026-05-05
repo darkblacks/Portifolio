@@ -1,0 +1,38 @@
+:root {
+  --color-bg-main: #05050a;
+  --color-bg-dark: #020204;
+  --color-bg-section: #0a0a0f;
+  --color-bg-section-soft: #151524;
+
+  --color-card: rgba(5, 5, 10, 0.92);
+  --color-terminal-header: #101018;
+  --color-cmd-header: #1f1f1f;
+  --color-cmd-border: #2b2b2b;
+
+  --color-primary: #8b5cf6;
+  --color-primary-soft: #a78bfa;
+  --color-primary-strong: #a855f7;
+  --color-primary-light: #c4b5fd;
+
+  --color-text: #ffffff;
+  --color-text-soft: #e5e7eb;
+  --color-text-muted: #a1a1aa;
+  --color-cmd-text: #f2f2f2;
+  --color-cmd-muted: #d4d4d4;
+
+  --color-danger: #c42b1c;
+
+  --shadow-purple-soft: 0 0 50px rgba(124, 58, 237, 0.18);
+  --shadow-purple-large: 0 0 80px rgba(124, 58, 237, 0.18);
+
+  --gradient-initial:
+    radial-gradient(circle at 80% 40%, rgba(124, 58, 237, 0.35), transparent 35%),
+    linear-gradient(135deg, var(--color-bg-section), var(--color-bg-section-soft));
+
+  --gradient-code:
+    radial-gradient(circle at center, rgba(124, 58, 237, 0.18), transparent 45%),
+    var(--color-bg-dark);
+
+  --font-main: Inter, Arial, sans-serif;
+  --font-code: Consolas, "Courier New", monospace;
+}

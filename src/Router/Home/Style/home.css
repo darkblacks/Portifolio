@@ -1,0 +1,2110 @@
+/* =========================================================
+   RESET GLOBAL
+   ========================================================= */
+
+/* 
+  Garante que padding e border sejam calculados dentro do tamanho final
+  dos elementos. Isso evita que cards, seções e botões "estourem" a tela.
+*/
+* {
+  box-sizing: border-box;
+}
+
+/* 
+  Ativa rolagem suave quando clicar nos links da navbar:
+  Home, Code e Portfolio.
+*/
+html {
+  scroll-behavior: smooth;
+}
+
+/* 
+  Configuração base do site inteiro.
+  As cores e fontes vêm das variáveis CSS já existentes no seu projeto.
+*/
+body {
+  margin: 0;
+  background: var(--color-bg-main);
+  color: var(--color-text);
+  font-family: var(--font-main);
+}
+
+/* 
+  Container geral da página.
+  O overflow-x hidden evita barra horizontal causada por elementos animados.
+*/
+.home-page {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   CONFIGURAÇÃO BASE DAS SEÇÕES
+   ========================================================= */
+
+/* 
+  Toda seção ocupa no mínimo 100% da altura da tela.
+  O padding lateral mantém o conteúdo respirando.
+*/
+.section {
+  min-height: 100vh;
+  padding: 32px 6%;
+}
+
+/* 
+  Primeira seção do site.
+  position: relative permite posicionar os objetos animados dentro dela.
+  overflow: hidden impede que os objetos decorativos criem scroll lateral.
+*/
+.initial-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-initial);
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+/* 
+  Barra superior com logo à esquerda e links à direita.
+*/
+.navbar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 
+  Área da marca: logo + texto "Victor".
+*/
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* 
+  Tamanho fixo da logo para não deformar.
+*/
+.brand img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* 
+  Links principais do menu.
+*/
+.navbar nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+/* 
+  Estilo dos links da navbar.
+*/
+.navbar a {
+  position: relative;
+  color: var(--color-text-soft);
+  text-decoration: none;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: color 0.25s ease;
+}
+
+/* 
+  Linha animada embaixo dos links no hover.
+*/
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -7px;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--color-primary-strong);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.8);
+  transition: width 0.25s ease;
+}
+
+.navbar a:hover {
+  color: var(--color-primary-light);
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+
+/* =========================================================
+   HERO / SEÇÃO INICIAL
+   ========================================================= */
+
+/* 
+  Layout principal da hero.
+  Divide a tela em duas colunas:
+  - esquerda: textos, tecnologias e botões
+  - direita: foto grande animada
+*/
+.hero-container {
+  position: relative;
+  z-index: 3;
+  min-height: calc(100vh - 90px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(360px, 0.92fr);
+  align-items: center;
+  gap: 64px;
+}
+
+/* 
+  Coluna esquerda da hero.
+*/
+.hero-left {
+  max-width: 680px;
+}
+
+/* 
+  Texto pequeno acima do título.
+*/
+.eyebrow {
+  margin: 0 0 22px;
+  color: var(--color-primary-soft);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-size: clamp(12px, 1.25vw, 18px);
+  line-height: 1.45;
+}
+
+/* 
+  Título principal.
+*/
+#title {
+  margin: 0;
+  font-size: clamp(56px, 7vw, 96px);
+  line-height: 0.95;
+  letter-spacing: -3px;
+  background: linear-gradient(
+    90deg,
+    var(--color-text-soft),
+    var(--color-primary-strong)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* 
+  Destaque dentro do título.
+*/
+#title span {
+  color: var(--color-primary-strong);
+}
+
+/* 
+  Lista de tecnologias abaixo do título.
+*/
+.hero-role {
+  margin-top: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 7px;
+  max-width: 560px;
+}
+
+/* 
+  Cada linha de tecnologias.
+*/
+.role-stack,
+.hero-role span {
+  font-size: 14px;
+  color: var(--color-primary-soft);
+  font-weight: 600;
+}
+
+/* 
+  Descrição abaixo das tecnologias.
+*/
+.subtitle {
+  margin: 26px 0 0;
+  color: var(--color-text-muted);
+  max-width: 560px;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* 
+  Área dos botões.
+*/
+.hero-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 34px;
+}
+
+/* 
+  Botão padrão do projeto.
+*/
+button {
+  border: none;
+  padding: 14px 34px;
+  border-radius: 14px;
+  background: var(--color-primary);
+  color: var(--color-text);
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 14px 34px rgba(168, 85, 247, 0.25);
+}
+
+/* 
+  Botão secundário com borda.
+*/
+button.outline {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary-light);
+  box-shadow: none;
+}
+
+/* 
+  Coluna direita da hero.
+  Ela ocupa uma área grande da tela para a foto não parecer um item solto.
+*/
+.hero-right {
+  position: relative;
+  min-height: 620px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 
+  Glow grande atrás da foto.
+  Dá profundidade e cara de UI profissional.
+*/
+.hero-right::before {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(168, 85, 247, 0.28), transparent 68%);
+  filter: blur(8px);
+  z-index: -1;
+}
+
+/* 
+  Card da foto.
+  A imagem fica grande, mas controlada.
+*/
+.photo-wrapper {
+  position: relative;
+  width: min(100%, 440px);
+  height: 560px;
+  border-radius: 42px;
+  overflow: hidden;
+  border: 1px solid rgba(192, 132, 252, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow:
+    0 0 70px rgba(168, 85, 247, 0.35),
+    0 24px 80px rgba(0, 0, 0, 0.4),
+    inset 0 0 40px rgba(255, 255, 255, 0.04);
+}
+
+/* 
+  Brilho sutil dentro do card da foto.
+*/
+.photo-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18),
+      transparent 32%,
+      rgba(168, 85, 247, 0.12)
+    );
+  pointer-events: none;
+}
+
+/* 
+  Imagem do Victor.
+  object-fit cover preenche o card sem deformar.
+*/
+.photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 
+  Badge flutuante abaixo da foto.
+*/
+.photo-badge {
+  position: absolute;
+  left: 8%;
+  bottom: 72px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: rgba(14, 10, 30, 0.72);
+  border: 1px solid rgba(192, 132, 252, 0.28);
+  color: var(--color-primary-light);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.22);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* 
+  Bolinha luminosa dentro do badge.
+*/
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--color-primary-strong);
+  box-shadow: 0 0 14px rgba(192, 132, 252, 0.9);
+}
+
+
+/* =========================================================
+   OBJETOS ANIMADOS DECORATIVOS
+   ========================================================= */
+
+/* 
+  Classe base dos objetos animados roxos.
+  O movimento principal fica no Framer Motion.
+*/
+.animated-box {
+  position: absolute;
+  width: 54px;
+  height: 54px;
+  z-index: 1;
+  border-radius: 8%;
+  box-shadow: 0 0 28px rgba(168, 85, 247, 0.42);
+  pointer-events: none;
+}
+
+/* 
+  Objeto principal: próximo da navbar/marca.
+*/
+.animated-box-primary {
+  left: 6%;
+  top: 16%;
+}
+
+/* 
+  Objeto secundário: fica entre texto e imagem, mas mais discreto.
+*/
+.animated-box-secondary {
+  right: 43%;
+  bottom: 18%;
+}
+
+/* 
+  Camada de textura/glow no fundo da seção inicial.
+*/
+.initial-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 75% 42%, rgba(124, 58, 237, 0.26), transparent 34%),
+    radial-gradient(circle at 18% 78%, rgba(168, 85, 247, 0.12), transparent 30%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* 
+  Grade sutil de fundo para dar estética tech.
+*/
+.initial-section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 56px 56px;
+  opacity: 0.25;
+  mask-image: linear-gradient(to bottom, black, transparent 78%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SEÇÃO CODE / TERMINAL
+   ========================================================= */
+
+/* 
+  Seção onde fica o terminal/código.
+*/
+.code-section {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-code);
+}
+
+/* 
+  Card principal do terminal.
+*/
+.terminal {
+  width: min(100%, 1100px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 18px;
+  background: var(--color-card);
+  box-shadow: var(--shadow-purple-large);
+  overflow: hidden;
+}
+
+/* 
+  Barra superior do terminal.
+*/
+.terminal-header {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 18px;
+  background: var(--color-terminal-header);
+  color: var(--color-text-muted);
+  font-family: var(--font-code);
+}
+
+.terminal-header p {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 
+  Bolinhas estilo janela Mac.
+*/
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.red {
+  background: #ff5f57;
+}
+
+.yellow {
+  background: #ffbd2e;
+}
+
+.green {
+  background: #28c840;
+}
+
+/* 
+  Corpo do terminal.
+*/
+.terminal-body {
+  padding: 48px;
+  font-family: var(--font-code);
+}
+
+.terminal-body h2 {
+  margin: 0;
+  color: var(--color-primary-strong);
+  font-size: clamp(48px, 10vw, 120px);
+  letter-spacing: 6px;
+}
+
+.role {
+  color: var(--color-primary-light);
+  margin-bottom: 40px;
+}
+
+.prompt {
+  color: var(--color-primary-strong);
+  margin-right: 8px;
+}
+
+
+/* =========================================================
+   JANELA CMD
+   ========================================================= */
+
+/* 
+  Janela de terminal estilo Windows/CMD.
+*/
+.cmd-window {
+  width: min(100%, 1050px);
+  border: 1px solid var(--color-cmd-border);
+  background: #000;
+  box-shadow: var(--shadow-purple-soft);
+  font-family: var(--font-code);
+}
+
+/* 
+  Barra superior do CMD.
+*/
+.cmd-titlebar {
+  height: 34px;
+  background: var(--color-cmd-header);
+  color: var(--color-cmd-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 12px;
+  font-size: 13px;
+}
+
+/* 
+  Botões de minimizar, maximizar e fechar.
+*/
+.cmd-actions {
+  display: flex;
+  height: 100%;
+}
+
+.cmd-actions span {
+  width: 46px;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--color-cmd-muted);
+}
+
+.cmd-actions span:last-child:hover {
+  background: var(--color-danger);
+  color: var(--color-text);
+}
+
+/* 
+    Titulo e Conteudo do terminal.
+*/
+
+.code-section {
+  flex-direction: column;
+  gap: 34px;
+}
+
+.code-intro {
+  width: min(100%, 1050px);
+  text-align: left;
+}
+
+.code-kicker {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--color-primary-soft);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.code-intro h2 {
+  margin: 0;
+  color: var(--color-primary-strong);
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1;
+}
+
+.code-intro p {
+  margin: 18px 0 0;
+  max-width: 760px;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+/* 
+  Corpo do CMD.
+*/
+.cmd-body {
+  padding: 18px;
+  min-height: 560px;
+  color: var(--color-cmd-text);
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.cmd-body p {
+  margin: 0;
+}
+
+.cmd-path {
+  color: var(--color-primary-strong);
+  margin-right: 6px;
+  white-space: nowrap;
+}
+
+
+.cmd-body h2 {
+  margin: 28px 0 4px;
+  color: var(--color-primary-strong);
+  font-size: clamp(48px, 9vw, 96px);
+  line-height: 1;
+  letter-spacing: 4px;
+}
+
+.cmd-role {
+  color: var(--color-primary-light);
+}
+
+/* 
+  Cursor piscando do terminal.
+*/
+.cmd-cursor {
+  display: inline-block;
+  width: 9px;
+  height: 18px;
+  background: var(--color-cmd-text);
+  animation: blink 1s steps(1) infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* 
+  Linha de input do CMD.
+*/
+.cmd-input-line {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  min-height: 22px;
+}
+.cmd-input-line input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-cmd-text);
+  font-family: var(--font-code);
+  font-size: 16px;
+}
+
+.cmd-command {
+  color: var(--color-primary-light);
+}
+
+
+/* =========================================================
+   CAMADA DE EFEITOS DO TERMINAL
+   ========================================================= */
+
+/* 
+  Camada absoluta para efeitos especiais:
+  aniversário, foguete e estrelas.
+*/
+.terminal-effects-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  overflow: hidden;
+}
+
+/* 
+  Efeito de emojis/subindo.
+*/
+.birthday-effect {
+  position: absolute;
+  inset: 0;
+}
+
+.birthday-effect span {
+  position: absolute;
+  left: calc(8% + (var(--i) * 9%));
+  bottom: -60px;
+  font-size: 42px;
+  animation: birthdayFloat 3.5s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.08s);
+}
+
+@keyframes birthdayFloat {
+  0% {
+    transform: translateY(0) scale(0.8) rotate(0deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-110vh) scale(1.3) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* 
+  Efeito do foguete.
+*/
+.rocket-effect {
+  position: absolute;
+  left: 50%;
+  bottom: -80px;
+  transform: translateX(-50%);
+}
+
+.rocket-effect > span {
+  display: block;
+  font-size: 64px;
+  animation: rocketLaunch 2.2s ease-in forwards;
+}
+
+.rocket-explosion {
+  position: absolute;
+  left: 50%;
+  top: -120px;
+  transform: translateX(-50%) scale(0);
+  font-size: 96px;
+  opacity: 0;
+  animation: rocketBoom 1s ease-out forwards;
+  animation-delay: 2s;
+}
+
+@keyframes rocketLaunch {
+  0% {
+    transform: translateY(0) rotate(-45deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-85vh) rotate(-45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes rocketBoom {
+  0% {
+    transform: translateX(-50%) scale(0);
+    opacity: 0;
+  }
+
+  40% {
+    transform: translateX(-50%) scale(1.4);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(-50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* 
+  Efeito de estrelas caindo.
+*/
+.stars-effect {
+  position: absolute;
+  inset: 0;
+}
+
+.stars-effect span {
+  position: absolute;
+  left: calc(10% + (var(--i) * 11%));
+  top: -40px;
+  color: var(--color-primary-light);
+  font-size: 36px;
+  animation: starFall 3s linear forwards;
+  animation-delay: calc(var(--i) * 0.12s);
+}
+
+@keyframes starFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+
+/* =========================================================
+   CLASSES ANTIGAS / COMPATIBILIDADE
+   ========================================================= */
+
+/* 
+  Mantive essa classe caso alguma seção antiga ainda use role-compact.
+*/
+.role-compact {
+  display: block;
+  max-width: 50vw;
+  font-size: clamp(12px, 1.2vw, 15px);
+  line-height: 1.5;
+  background: linear-gradient(
+    90deg,
+    var(--color-text-soft),
+    var(--color-primary-strong)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* 
+  Mantive caso algum componente antigo ainda use role-main.
+*/
+.role-main {
+  font-size: 14px;
+  color: var(--color-primary-soft);
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+/* 
+  Ajuste para telas médias.
+*/
+@media (max-width: 1100px) {
+  .hero-container {
+    gap: 40px;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.85fr);
+  }
+
+  .photo-wrapper {
+    height: 500px;
+  }
+
+  .hero-right {
+    min-height: 560px;
+  }
+
+  .animated-box-secondary {
+    right: 46%;
+    bottom: 12%;
+  }
+}
+
+/* 
+  Tablet e celular grande:
+  a hero vira uma coluna, com texto em cima e foto embaixo.
+*/
+@media (max-width: 900px) {
+  .section {
+    padding: 26px 6%;
+  }
+
+  .navbar {
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .navbar nav {
+    gap: 18px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .hero-container {
+    min-height: auto;
+    padding-top: 86px;
+    padding-bottom: 80px;
+    grid-template-columns: 1fr;
+    gap: 54px;
+  }
+
+  .hero-left {
+    max-width: 100%;
+  }
+
+  #title {
+    font-size: clamp(50px, 14vw, 76px);
+  }
+
+  .hero-right {
+    min-height: auto;
+  }
+
+  .photo-wrapper {
+    width: min(100%, 420px);
+    height: 500px;
+  }
+
+  .photo-badge {
+    left: 50%;
+    bottom: -22px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  .animated-box-primary {
+    left: 8%;
+    top: 105px;
+  }
+
+  .animated-box-secondary {
+    right: 10%;
+    bottom: 42%;
+  }
+}
+
+/* 
+  Celular menor.
+*/
+@media (max-width: 620px) {
+  .brand {
+    font-size: 19px;
+  }
+
+  .brand img {
+    width: 42px;
+    height: 42px;
+  }
+
+  .navbar nav {
+    gap: 14px;
+  }
+
+  .navbar a {
+    font-size: 12px;
+  }
+
+  .eyebrow {
+    letter-spacing: 2px;
+    font-size: 12px;
+  }
+
+  #title {
+    letter-spacing: -2px;
+  }
+
+  .hero-role span,
+  .role-stack {
+    font-size: 13px;
+  }
+
+  .subtitle {
+    font-size: 15px;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+    flex-direction: column;
+    max-width: 260px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .photo-wrapper {
+    height: 430px;
+    border-radius: 32px;
+  }
+
+  .animated-box {
+    width: 44px;
+    height: 44px;
+  }
+
+  .terminal-body {
+    padding: 28px;
+  }
+
+  .cmd-body {
+    min-height: 460px;
+    font-size: 14px;
+  }
+}
+
+/* =========================================================
+   TERMINAL - INTRODUÇÃO DA SEÇÃO
+   ========================================================= */
+
+/*
+  A seção de código passa a organizar a introdução e o terminal
+  um abaixo do outro.
+*/
+.code-section {
+  flex-direction: column;
+  gap: 34px;
+}
+
+/*
+  Texto explicativo acima do terminal.
+*/
+.code-intro {
+  width: min(100%, 1050px);
+  text-align: left;
+}
+
+/*
+  Pequeno rótulo acima do título.
+*/
+.code-kicker {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: var(--color-primary-soft);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/*
+  Título da seção do terminal.
+*/
+.code-intro h2 {
+  margin: 0;
+  color: var(--color-primary-strong);
+  font-size: clamp(34px, 5vw, 64px);
+  line-height: 1;
+}
+
+/*
+  Explicação breve do terminal.
+*/
+.code-intro p {
+  margin: 18px 0 0;
+  max-width: 760px;
+  color: var(--color-text-muted);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   TERMINAL - AUTOCOMPLETE COM TAB
+   ========================================================= */
+
+/*
+  Container do input com sugestão fantasma.
+*/
+.cmd-autocomplete {
+  position: relative;
+  flex: 1;
+  min-width: 160px;
+  height: 20px;
+  display: block;
+}
+/*
+  Texto cinza que aparece como sugestão.
+*/
+.cmd-ghost-text {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 20px;
+  color: rgba(255, 255, 255, 0.32);
+  font-family: var(--font-code);
+  font-size: 16px;
+  line-height: 20px;
+  pointer-events: none;
+  white-space: pre;
+  z-index: 1;
+}
+
+/*
+  Espaço invisível que empurra a sugestão para depois do texto digitado.
+*/
+.cmd-ghost-spacer {
+  color: transparent;
+}
+
+/*
+  Input real do terminal.
+*/
+.cmd-autocomplete input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  width: 100%;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--color-cmd-text);
+  font-family: var(--font-code);
+  font-size: 16px;
+  line-height: 20px;
+}
+
+
+/* =========================================================
+   AÇÃO 1 - EFEITOS DE ANIVERSÁRIO
+   ========================================================= */
+
+/*
+  Mensagem principal quando hoje é aniversário.
+*/
+.birthday-message {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  padding: 18px 28px;
+  border-radius: 22px;
+  background: rgba(14, 10, 30, 0.86);
+  border: 1px solid rgba(192, 132, 252, 0.45);
+  color: var(--color-primary-light);
+  font-weight: 800;
+  font-size: clamp(18px, 3vw, 34px);
+  text-align: center;
+  box-shadow: 0 0 50px rgba(168, 85, 247, 0.45);
+  backdrop-filter: blur(14px);
+  animation: birthdayMessagePop 4s ease forwards;
+}
+
+/*
+  Emojis subindo quando é aniversário.
+*/
+.birthday-success span {
+  position: absolute;
+  left: calc(6% + (var(--i) * 8%));
+  bottom: -70px;
+  font-size: 44px;
+  animation: birthdayFloat 4s ease-out forwards;
+  animation-delay: calc(var(--i) * 0.07s);
+}
+
+/*
+  Camada do efeito de contagem regressiva.
+*/
+.birthday-countdown-effect {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+/*
+  Mensagem quando ainda não é aniversário.
+*/
+.birthday-countdown-message {
+  max-width: min(90%, 720px);
+  padding: 18px 28px;
+  border-radius: 22px;
+  background: rgba(14, 10, 30, 0.88);
+  border: 1px solid rgba(192, 132, 252, 0.38);
+  color: var(--color-primary-light);
+  font-size: clamp(17px, 2.5vw, 30px);
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 0 46px rgba(168, 85, 247, 0.36);
+  backdrop-filter: blur(14px);
+  animation: countdownRise 4.2s ease forwards;
+}
+
+/*
+  Animação da mensagem de aniversário.
+*/
+@keyframes birthdayMessagePop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -35%) scale(0.75);
+  }
+
+  18% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -70%) scale(0.92);
+  }
+}
+
+/*
+  Animação da mensagem de contagem regressiva.
+*/
+@keyframes countdownRise {
+  0% {
+    opacity: 0;
+    transform: translateY(60px) scale(0.9);
+  }
+
+  18% {
+    opacity: 1;
+    transform: translateY(0) scale(1.03);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translateY(-12px) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-90px) scale(0.94);
+  }
+}
+
+/* =========================================================
+   AÇÃO 2 - ROCKET COM BOOM GARANTIDO
+   ========================================================= */
+
+/*
+  Camada geral dos efeitos do terminal.
+  Precisa ficar acima da janela CMD.
+*/
+.terminal-effects-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/*
+  Camada principal da AÇÃO 2.
+*/
+.rocket-action {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/*
+  Mensagem cômica enquanto o foguete sobe.
+*/
+.rocket-message {
+  position: absolute;
+  left: 50%;
+  bottom: 70px;
+  z-index: 20;
+  transform: translateX(-50%);
+  padding: 14px 28px;
+  border-radius: 999px;
+  background: rgba(14, 10, 30, 0.9);
+  border: 1px solid rgba(192, 132, 252, 0.45);
+  color: var(--color-primary-light);
+  font-weight: 800;
+  font-size: clamp(15px, 2vw, 24px);
+  box-shadow: 0 0 42px rgba(168, 85, 247, 0.45);
+  backdrop-filter: blur(14px);
+  animation: rocketMessage 9s ease forwards;
+}
+
+/*
+  Grupo do foguete.
+  Foguete e fumaça sobem juntos.
+*/
+.rocket-flight {
+  position: absolute;
+  left: 50%;
+  bottom: -90px;
+  z-index: 15;
+  width: 180px;
+  height: 180px;
+  transform: translateX(-50%);
+  animation: rocketFlight 8s ease-in-out forwards;
+}
+
+/*
+  Emoji do foguete.
+*/
+.rocket-emoji {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  z-index: 3;
+  font-size: 76px;
+  transform: translate(-50%, -50%) rotate(-45deg);
+  filter: drop-shadow(0 0 22px rgba(168, 85, 247, 0.9));
+  animation: rocketWobble 0.8s ease-in-out infinite;
+}
+
+/*
+  Fumaça do foguete.
+*/
+.rocket-smoke {
+  position: absolute;
+  left: 50%;
+  top: 78%;
+  z-index: 2;
+  font-size: 30px;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+}
+
+.rocket-smoke-one {
+  animation: rocketSmokeOne 1.1s ease-out infinite;
+}
+
+.rocket-smoke-two {
+  animation: rocketSmokeTwo 1.1s ease-out infinite;
+  animation-delay: 0.25s;
+}
+
+.rocket-smoke-three {
+  animation: rocketSmokeThree 1.1s ease-out infinite;
+  animation-delay: 0.5s;
+}
+
+/*
+  Camada da explosão final.
+  Ela existe desde o começo, mas só aparece perto do final.
+*/
+.rocket-final-boom {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  animation: rocketBoomLayer 10s ease forwards;
+}
+
+/*
+  Flash de tela.
+*/
+.rocket-flash {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 235, 120, 0.5),
+    rgba(255, 120, 80, 0.24),
+    rgba(168, 85, 247, 0.16),
+    transparent 62%
+  );
+  opacity: 0;
+  animation: rocketFlash 10s ease forwards;
+}
+
+/*
+  Emoji principal da explosão.
+*/
+.rocket-boom-emoji {
+  position: relative;
+  z-index: 6;
+  font-size: clamp(150px, 22vw, 280px);
+  line-height: 1;
+  opacity: 0;
+  filter:
+    drop-shadow(0 0 35px rgba(255, 230, 100, 1))
+    drop-shadow(0 0 90px rgba(255, 80, 80, 0.95));
+  animation: rocketBoomEmoji 10s ease forwards;
+}
+
+/*
+  Anéis de impacto da explosão.
+*/
+.rocket-boom-ring {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 230, 140, 0.92);
+  box-shadow:
+    0 0 34px rgba(255, 220, 100, 0.9),
+    inset 0 0 28px rgba(255, 90, 70, 0.5);
+  opacity: 0;
+}
+
+.rocket-ring-one {
+  animation: rocketBoomRing 10s ease forwards;
+}
+
+.rocket-ring-two {
+  animation: rocketBoomRing 10s ease forwards;
+  animation-delay: 0.12s;
+}
+
+.rocket-ring-three {
+  animation: rocketBoomRing 10s ease forwards;
+  animation-delay: 0.24s;
+}
+
+/*
+  Partículas jogadas para fora da explosão.
+*/
+.rocket-particle {
+  position: absolute;
+  z-index: 7;
+  font-size: 44px;
+  opacity: 0;
+}
+
+.rocket-particle-one {
+  animation: rocketParticleOne 10s ease forwards;
+}
+
+.rocket-particle-two {
+  animation: rocketParticleTwo 10s ease forwards;
+}
+
+.rocket-particle-three {
+  animation: rocketParticleThree 10s ease forwards;
+}
+
+.rocket-particle-four {
+  animation: rocketParticleFour 10s ease forwards;
+}
+
+/*
+  Texto BOOOOM.
+*/
+.rocket-boom-text {
+  position: absolute;
+  z-index: 8;
+  bottom: 22%;
+  padding: 12px 28px;
+  border-radius: 999px;
+  background: rgba(14, 10, 30, 0.92);
+  border: 1px solid rgba(255, 220, 120, 0.6);
+  color: #ffe878;
+  font-size: clamp(24px, 4vw, 52px);
+  font-weight: 900;
+  letter-spacing: 2px;
+  box-shadow: 0 0 45px rgba(255, 190, 80, 0.55);
+  opacity: 0;
+  animation: rocketBoomText 10s ease forwards;
+}
+
+/* =========================================================
+   KEYFRAMES - ROCKET
+   ========================================================= */
+
+@keyframes rocketMessage {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  78% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-40px);
+  }
+}
+
+@keyframes rocketFlight {
+  0% {
+    bottom: -90px;
+    opacity: 0;
+    transform: translateX(-50%) translateX(0) scale(0.9);
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  18% {
+    bottom: 10%;
+    transform: translateX(-50%) translateX(-36px) scale(1);
+  }
+
+  32% {
+    bottom: 24%;
+    transform: translateX(-50%) translateX(28px) scale(1);
+  }
+
+  48% {
+    bottom: 40%;
+    transform: translateX(-50%) translateX(-26px) scale(1);
+  }
+
+  64% {
+    bottom: 56%;
+    transform: translateX(-50%) translateX(20px) scale(1);
+  }
+
+  78% {
+    bottom: 72%;
+    opacity: 1;
+    transform: translateX(-50%) translateX(-10px) scale(1);
+  }
+
+  84% {
+    bottom: 78%;
+    opacity: 0;
+    transform: translateX(-50%) translateX(0) scale(0.2);
+  }
+
+  100% {
+    bottom: 78%;
+    opacity: 0;
+    transform: translateX(-50%) translateX(0) scale(0.2);
+  }
+}
+
+@keyframes rocketWobble {
+  0% {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+  }
+
+  35% {
+    transform: translate(-54%, -50%) rotate(-37deg) scale(1.03);
+  }
+
+  70% {
+    transform: translate(-46%, -50%) rotate(-53deg) scale(0.98);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(-45deg) scale(1);
+  }
+}
+
+@keyframes rocketSmokeOne {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.4);
+  }
+
+  35% {
+    opacity: 0.85;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(-34px, 44px) scale(1.5);
+  }
+}
+
+@keyframes rocketSmokeTwo {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.4);
+  }
+
+  35% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(28px, 48px) scale(1.6);
+  }
+}
+
+@keyframes rocketSmokeThree {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(0, 0) scale(0.4);
+  }
+
+  35% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translate(0, 58px) scale(1.7);
+  }
+}
+
+/* =========================================================
+   KEYFRAMES - BOOM
+   ========================================================= */
+
+@keyframes rocketBoomLayer {
+  0%,
+  79% {
+    opacity: 0;
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  96% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rocketFlash {
+  0%,
+  79% {
+    opacity: 0;
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rocketBoomEmoji {
+  0%,
+  79% {
+    opacity: 0;
+    transform: scale(0.1) rotate(0deg);
+  }
+
+  82% {
+    opacity: 1;
+    transform: scale(1.6) rotate(10deg);
+  }
+
+  86% {
+    opacity: 1;
+    transform: scale(1.15) rotate(-8deg);
+  }
+
+  92% {
+    opacity: 1;
+    transform: scale(1.45) rotate(5deg);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(3) rotate(0deg);
+  }
+}
+
+@keyframes rocketBoomRing {
+  0%,
+  79% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(6);
+  }
+}
+
+@keyframes rocketParticleOne {
+  0%,
+  79% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-180px, -135px) scale(1.6) rotate(180deg);
+  }
+}
+
+@keyframes rocketParticleTwo {
+  0%,
+  79% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(190px, -115px) scale(1.6) rotate(-180deg);
+  }
+}
+
+@keyframes rocketParticleThree {
+  0%,
+  79% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-145px, 125px) scale(1.5) rotate(-120deg);
+  }
+}
+
+@keyframes rocketParticleFour {
+  0%,
+  79% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(155px, 135px) scale(1.5) rotate(120deg);
+  }
+}
+
+@keyframes rocketBoomText {
+  0%,
+  80% {
+    opacity: 0;
+    transform: translateY(30px) scale(0.8);
+  }
+
+  84% {
+    opacity: 1;
+    transform: translateY(0) scale(1.08);
+  }
+
+  94% {
+    opacity: 1;
+    transform: translateY(-8px) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-34px) scale(0.9);
+  }
+}
+
+/* =========================================================
+   AÇÃO 3 - MATRIX DE CÓDIGO
+   ========================================================= */
+
+/*
+  Camada principal da Matrix.
+*/
+.matrix-effect {
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.52),
+    rgba(20, 8, 40, 0.18),
+    transparent
+  );
+  animation: matrixFadeLayer 6s ease forwards;
+}
+
+/*
+  Mensagem central da Matrix.
+*/
+.matrix-message {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  transform: translateX(-50%);
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.78);
+  border: 1px solid rgba(192, 132, 252, 0.4);
+  color: var(--color-primary-light);
+  font-family: var(--font-code);
+  font-size: clamp(14px, 2vw, 22px);
+  font-weight: 800;
+  letter-spacing: 2px;
+  box-shadow: 0 0 36px rgba(168, 85, 247, 0.42);
+  animation: matrixMessage 5.6s ease forwards;
+}
+
+/*
+  Cada código/palavra subindo na tela.
+*/
+.matrix-token {
+  position: absolute;
+  left: calc(1% + (var(--i) * 1.35%));
+  bottom: -60px;
+  color: var(--color-primary-light);
+  font-family: var(--font-code);
+  font-size: clamp(12px, 1.2vw, 20px);
+  font-weight: 700;
+  text-shadow:
+    0 0 8px rgba(192, 132, 252, 0.9),
+    0 0 18px rgba(168, 85, 247, 0.55);
+  opacity: 0;
+  white-space: nowrap;
+  animation: matrixTokenRise 5.4s linear forwards;
+  animation-delay: calc(var(--i) * 0.035s);
+}
+
+/*
+  Fundo aparece e some.
+*/
+@keyframes matrixFadeLayer {
+  0% {
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+  }
+
+  82% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/*
+  Mensagem central.
+*/
+@keyframes matrixMessage {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px) scale(0.94);
+  }
+
+  14% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  76% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-8px) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-34px) scale(0.92);
+  }
+}
+
+/*
+  Códigos subindo.
+*/
+@keyframes matrixTokenRise {
+  0% {
+    opacity: 0;
+    transform: translateY(0) scale(0.9);
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  65% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-115vh) scale(1.05);
+  }
+}
+
+/*/skills/*/
+
+.skills-section {
+  position: relative;
+  overflow: hidden;
+  padding: 110px 8%;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.18), transparent 32%),
+    radial-gradient(circle at 85% 75%, rgba(168, 85, 247, 0.14), transparent 34%),
+    #080812;
+}
+
+.skills-intro {
+  max-width: 780px;
+  margin: 0 auto 56px;
+  text-align: center;
+}
+
+.skills-kicker {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: #c084fc;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.skills-intro h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 1.08;
+}
+
+.skills-intro p {
+  margin: 20px auto 0;
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.skill-card {
+  position: relative;
+  min-height: 430px;
+  padding: 28px;
+  border: 1px solid rgba(192, 132, 252, 0.22);
+  border-radius: 28px;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.025)),
+    rgba(15, 15, 28, 0.82);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.32);
+  backdrop-filter: blur(18px);
+}
+
+.skill-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(192, 132, 252, 0.16),
+    transparent 45%,
+    rgba(139, 92, 246, 0.12)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.skill-card:hover::before {
+  opacity: 1;
+}
+
+.skill-card-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.skill-number {
+  display: grid;
+  width: 46px;
+  height: 46px;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(139, 92, 246, 0.18);
+  color: #d8b4fe;
+  font-weight: 800;
+}
+
+.skill-card h3 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.45rem;
+}
+
+.skill-description {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 22px;
+  color: rgba(255, 255, 255, 0.76);
+  line-height: 1.75;
+}
+
+.skill-learned-box {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 24px;
+  padding: 18px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.055);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.skill-learned-box strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #c084fc;
+  font-size: 0.9rem;
+}
+
+.skill-learned-box p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.skill-tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.skill-tags span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(139, 92, 246, 0.14);
+  border: 1px solid rgba(192, 132, 252, 0.2);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+@media (max-width: 980px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skill-card {
+    min-height: auto;
+  }
+}
