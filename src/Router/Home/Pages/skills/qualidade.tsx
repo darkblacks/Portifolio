@@ -2,16 +2,15 @@ import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   Bar,
-  BarChart,
   CartesianGrid,
   Cell,
+  ComposedChart,
   LabelList,
   Line,
   ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
-  ComposedChart,
 } from "recharts";
 
 const paretoRawData = [
@@ -703,13 +702,13 @@ export default function Qualidade() {
       }}
     >
       <LabelList
-        dataKey="percentualAcumulado"
-        position="top"
-        formatter={(value: number) => `${value}%`}
-        fill="#f9a8d4"
-        fontSize={11}
-        fontWeight={900}
-      />
+  dataKey="percentualAcumulado"
+  position="top"
+  formatter={(value) => `${Number(value ?? 0)}%`}
+  fill="#f9a8d4"
+  fontSize={11}
+  fontWeight={900}
+/>
     </Line>
   </ComposedChart>
 </ResponsiveContainer>
